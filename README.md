@@ -1,3 +1,3 @@
 # NJIT Embedded Systems
 ## Whiteboard Scanner and Eraser
-hello guys!
+hello guys and girls!
