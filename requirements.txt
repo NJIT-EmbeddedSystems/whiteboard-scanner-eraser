@@ -1,0 +1,10 @@
+#  todo input rpi package
+# gpio reads
+# motors packages if needed
+# 
+#  camera interfaces
+# opencv when needed
+# motors
+# servos
+# driver
+# limit switch
