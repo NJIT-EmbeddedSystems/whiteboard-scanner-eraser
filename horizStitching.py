@@ -13,7 +13,7 @@ from imutils import paths
 # args = vars(ap.parse_args())
 
 inputPath = "./testImages"
-outputPath = "./testImages/output.jpg"
+outputPath = "./outputImages/output.jpg"
 
 # gets all image paths from folder
 print("[INFO] loading images...")
