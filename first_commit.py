@@ -36,19 +36,19 @@ Type "help", "copyright", "credits" or "license()" for more information.
 ...     #needs some function to turn on cameras, will have to collaborate with camera subgroup
 ...     #makes cameras pan across board and return after hitting the limit switch
 ...     cameraMotor_DC.forward()
-    if limitLeft.is_pressed():
-      #needs a function to turn off cameras, maybe importing RPi.GPIO to supply power through specific pins will work?
-        cameraMotor_DC.backward()
-        if limitLeft.is_pressed():
-            return
-       
-#button interface
-#constantly scans for a button being pressed and calls a corresponding function
-while True:
-  if eraseButton.is_pressed():
-    erase()
-  else if scanButton.is_pressed():
-    scan()
-  else if dualButton.is_pressed():
-    scan()
-    erase()
+...     if limitLeft.is_pressed():
+...       #needs a function to turn off cameras, maybe importing RPi.GPIO to supply power through specific pins will work?
+...         cameraMotor_DC.backward()
+...         if limitLeft.is_pressed():
+...             return
+...        
+... #button interface
+... #constantly scans for a button being pressed and calls a corresponding function
+... while True:
+...   if eraseButton.is_pressed():
+...     erase()
+...   else if scanButton.is_pressed():
+...     scan()
+...   else if dualButton.is_pressed():
+...     scan()
+...     erase()
