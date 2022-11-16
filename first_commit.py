@@ -1,21 +1,21 @@
 Python 3.11.0 (main, Oct 24 2022, 18:26:48) [MSC v.1933 64 bit (AMD64)] on win32
 Type "help", "copyright", "credits" or "license()" for more information.
->>> #importing Servo and Motor library to control servo and dc motor, respectively
-... from gpiozero import Button,Servo,Motor
-... 
-... #initializing input buttons and limit switches (also classified as buttons)
-... scanButton = #Button(pin#)
-... eraseButton = #Button(pin#)
-... dualButton = #Button(pin#)
-... limitLeft = #Button(pin#)
-... limitRight = #Button(pin#)
-... 
-... #initializing output devices
-... eraserServo = #Servo(pin #)
-... eraserMotor_DC = #Motor(forward= forward pin#, backward = backward pin#)
-... cameraMotor_DC = #Motor(forward= forward pin#, backward = backward pin#)
-... 
-... 
+#importing Button, Servo, and Motor library to control buttons, servo and dc motors, respectively
+from gpiozero import Button,Servo,Motor
+
+#initializing input buttons and limit switches (also classified as buttons)
+scanButton = #Button(pin#)
+eraseButton = #Button(pin#)
+dualButton = #Button(pin#)
+limitLeft = #Button(pin#)
+limitRight = #Button(pin#)
+
+#initializing output devices
+eraserServo = #Servo(pin #)
+eraserMotor_DC = #Motor(forward= forward pin#, backward = backward pin#)
+cameraMotor_DC = #Motor(forward= forward pin#, backward = backward pin#)
+
+
 ... 
 ... #servo.min() and servo.max() can be switched depending on orientation of the servo in prototype
 ... 
