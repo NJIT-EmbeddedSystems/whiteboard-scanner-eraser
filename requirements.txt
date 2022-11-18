@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #  todo input rpi package
 # gpio reads
 # motors packages if needed
@@ -11,3 +12,5 @@
 
 # User Interface
 PyQt5
+=======
+>>>>>>> main
