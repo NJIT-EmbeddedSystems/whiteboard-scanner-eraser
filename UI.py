@@ -1,12 +1,12 @@
-import PyQt6
 import sys
+import PyQt6
 
 from PyQt6.QtWidgets import QApplication, QWidget
 
 class EmptyWindow(QWidget):
     def __init__(self):
        super().__init__()
-       self.initalizeUI()
+       self.initializeUI()
 
        def initializeUI(self):
         self.setGeometry(200,100,400,300)
@@ -14,6 +14,6 @@ class EmptyWindow(QWidget):
         self.show()
 
 if __name__ == '__main__':
-    app = QApplication(sys.argv)
+    app = QApplication(sys.argv)    # -d for debugging, otherwise empty for production
     window = EmptyWindow()
-    sys.exit(app.exec())
+    sys.exit(app.exec_())
