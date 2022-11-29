@@ -10,4 +10,4 @@
 # limit switch
 
 # User Interface
-PyQt5
+PyQt6
