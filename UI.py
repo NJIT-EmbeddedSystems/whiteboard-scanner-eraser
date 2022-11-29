@@ -1,6 +1,6 @@
-import sys
-import PyQt6
+# import PyQt6
 
+import sys
 from PyQt6.QtWidgets import QApplication, QWidget
 
 class EmptyWindow(QWidget):
@@ -8,7 +8,7 @@ class EmptyWindow(QWidget):
        super().__init__()
        self.initializeUI()
 
-       def initializeUI(self):
+    def initializeUI(self):
         self.setGeometry(200,100,400,300)
         self.setWindowTitle("Whiteboard Scanner/Eraser")
         self.show()
@@ -16,4 +16,4 @@ class EmptyWindow(QWidget):
 if __name__ == '__main__':
     app = QApplication(sys.argv)    # -d for debugging, otherwise empty for production
     window = EmptyWindow()
-    sys.exit(app.exec_())
+    sys.exit(app.exec())
