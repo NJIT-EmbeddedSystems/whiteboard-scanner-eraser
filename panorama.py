@@ -33,7 +33,8 @@ class Stitcher:
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
         if self.isv3:
-            descriptor = cv2.xfeatures2d.SIFT_create()
+            # descriptor = cv2.xfeatures2d.SIFT_create()
+            descriptor = cv2.SIFT_create()
             (kps, features) = descriptor.detectAndCompute(image, None)
         else:
             detector = cv2.FeatureDetector_create("SIFT")
