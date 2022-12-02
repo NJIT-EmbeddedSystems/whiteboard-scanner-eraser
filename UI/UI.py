@@ -1,8 +1,10 @@
 # import PyQt6
 
 import sys
-from PyQt6.QtWidgets import QApplication, QWidget, QLabel
+from PyQt6.QtWidgets import QApplication, QWidget, QLabel, QCheckBox, QVBoxLayout
 from PyQt6.QtGui import QPixmap
+from PyQt6.uic.properties import QtWidgets
+
 
 class MainWindow(QWidget):
     def __init__(self):
@@ -17,9 +19,15 @@ class MainWindow(QWidget):
         self.show()
 
     def setUpMainWindow(self):
-        hello_label = QLabel(self)
-        hello_label.setText("Hello")
-        hello_label.move(105,15)
+        scan_label = QLabel("Scan", self)
+        scan_label.move(15, 15)
+        scan_cb = QCheckBox(self)
+        scan_cb.move(50, 17)
+        erase_label = QLabel("Erase", self)
+        erase_label.move(15, 35)
+        erase_cb = QCheckBox(self)
+        erase_cb.move(50, 37)
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)    # -d for debugging, otherwise empty for production
