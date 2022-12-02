@@ -1,11 +1,13 @@
-import RPi.GPIO as GPIO
+#import RPi.GPIO as GPIO
+import horizStitching
+import vertStitching
 
 
-# for i in range(boardEdgeCount):
+for i in range(10):
 
-#     if i == 0:
-#         vertStitch(img1, img2, img3, output)
-#         continue
+    if i == 0:
+        vertStitching(img1, img2, img3, output)
+        continue
 
-#     vertStitch(img1, img2, img3, finalOutput)
-#     horiStitch(finalOutput, output1, output2)
+    vertStitching(img1, img2, img3, finalOutput)
+    horizStitching(finalOutput, output1, output2)
