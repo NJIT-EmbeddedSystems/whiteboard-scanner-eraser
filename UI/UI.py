@@ -1,7 +1,7 @@
 # import PyQt6
 
 import sys
-from PyQt6.QtWidgets import QApplication, QWidget
+from PyQt6.QtWidgets import QApplication, QWidget, QLabel
 from PyQt6.QtGui import QPixmap
 
 class MainWindow(QWidget):
@@ -12,6 +12,7 @@ class MainWindow(QWidget):
     def initializeUI(self):
         self.setGeometry(200,100,400,300) # (x,y,width,height)
         self.setWindowTitle("Whiteboard Scanner/Eraser")
+
         self.setUpMainWindow()
         self.show()
 

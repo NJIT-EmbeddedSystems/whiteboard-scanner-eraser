@@ -6,7 +6,7 @@ from PyQt6.QtWidgets import QApplication, QWidget
 class EmptyWindow(QWidget):
     def __init__(self):
        super().__init__()
-       self.initalizeUI()
+       self.initializeUI()
 
        def initializeUI(self):
         self.setGeometry(200,100,400,300)
