@@ -19,14 +19,17 @@ class MainWindow(QWidget):
         self.show()
 
     def setUpMainWindow(self):
+        header_label = QLabel("Select options:", self)
+        header_label.setWordWrap(True)
+        header_label.move(15,10)
         scan_label = QLabel("Scan", self)
-        scan_label.move(15, 15)
+        scan_label.move(15, 30)
         scan_cb = QCheckBox(self)
-        scan_cb.move(50, 17)
+        scan_cb.move(60, 30)
         erase_label = QLabel("Erase", self)
-        erase_label.move(15, 35)
+        erase_label.move(15, 50)
         erase_cb = QCheckBox(self)
-        erase_cb.move(50, 37)
+        erase_cb.move(60, 50)
 
 
 if __name__ == '__main__':
