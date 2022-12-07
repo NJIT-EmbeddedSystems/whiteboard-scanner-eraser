@@ -1,9 +1,12 @@
 # import PyQt6
 
 import sys
-from PyQt6.QtWidgets import QApplication, QWidget, QLabel, QCheckBox, QVBoxLayout
-from PyQt6.QtGui import QPixmap
+from PyQt6.QtWidgets import (QApplication, QWidget, QLabel,\
+                             QCheckBox, QPushButton) 
+# not used: qvboxlayout
+# from PyQt6.QtGui import QPixmap
 from PyQt6.uic.properties import QtWidgets
+from PyQt6.QtCore import Qt
 
 
 class MainWindow(QWidget):
@@ -30,6 +33,12 @@ class MainWindow(QWidget):
         erase_label.move(15, 50)
         erase_cb = QCheckBox(self)
         erase_cb.move(60, 50)
+        # Execute button
+        self.button = QPushButton("EXECUTE",self)
+        self.button.move(155,200)
+        # link button click to exec()-like function
+        # self.button.clicked.connect(self.buttonClicked) 
+        # add buttonClicked() def
 
 
 if __name__ == '__main__':
