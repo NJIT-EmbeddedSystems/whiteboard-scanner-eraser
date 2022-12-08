@@ -8,3 +8,7 @@
 # servos
 # driver
 # limit switch
+cv2
+imutils
+numpy
+Stitcher
