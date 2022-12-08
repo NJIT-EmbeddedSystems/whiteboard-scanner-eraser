@@ -7,7 +7,8 @@ class Stitcher:
     def __init__(self):
         self.isv3 = imutils.is_cv3(or_better=True)
 
-    def stitch(self, images, ratio=0.4, reprojThresh=30.0, showMatches=False):
+
+    def stitch(self, images, ratio=0.75, reprojThresh=50.0, showMatches=False):
         (imageB, imageA) = images
         (kpsA, featuresA) = self.detectAndDescribe(imageA)
         (kpsB, featuresB) = self.detectAndDescribe(imageB)
@@ -28,8 +29,8 @@ class Stitcher:
 
         return result
 
-    def detectAndDescribe(self, image):
 
+    def detectAndDescribe(self, image):
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
         if self.isv3:
@@ -47,8 +48,8 @@ class Stitcher:
 
         return (kps, features)
 
+
     def matchKeypoints(self, kpsA, kpsB, featuresA, featuresB, ratio, reprojThresh):
-		
         matcher = cv2.DescriptorMatcher_create("BruteForce")
         rawMatches = matcher.knnMatch(featuresA, featuresB, 2)
         matches = []
@@ -68,18 +69,19 @@ class Stitcher:
 
         return None
 
-    def drawMatches(self, imageA, imageB, kpsA, kpsB, matches, status):
 
+    def drawMatches(self, imageA, imageB, kpsA, kpsB, matches, status):
         (hA, wA) = imageA.shape[:2]
         (hB, wB) = imageB.shape[:2]
+
         vis = np.zeros((max(hA, hB), wA + wB, 3), dtype="uint8")
+
         vis[0:hA, 0:wA] = imageA
         vis[0:hB, wA:] = imageB
 
         for ((trainIdx, queryIdx), s) in zip(matches, status):
             
             if s == 1:
-
                 ptA = (int(kpsA[queryIdx][0]), int(kpsA[queryIdx][1]))
                 ptB = (int(kpsB[trainIdx][0]) + wA, int(kpsB[trainIdx][1]))
                 cv2.line(vis, ptA, ptB, (0, 255, 0), 1)

@@ -1,25 +1,41 @@
-#import RPi.GPIO as GPIO
-from funcStitch import stitching
+from stitch import stitching
+from removeBorder import removeBorder
 import cv2
 
-#allImages = [["./testImages/whiteboard-test3/20221118_124555.jpg", "./testImages/whiteboard-test3/20221118_124558.jpg", "./testImages/whiteboard-test3/20221118_124601.jpg"]]
-#temp = "./outputImages/firstTemp.jpg"
+#Storing image paths and output paths
+allImages = [["./testImages/whiteboard-test2/20221118_121053.jpg", "./testImages/whiteboard-test2/20221118_121056.jpg", "./testImages/whiteboard-test2/20221118_121058.jpg"]]
+tempPath = "./outputImages/firstTemp.jpg"
+temp2Path = "./outputImages/secondTemp.jpg"
 outputPath = "./outputImages/whiteboardOutput.jpg"
 
-allImages = [["./testImages/window-test/left.jpg", "./testImages/window-test/mid.jpg", "./testImages/window-test/right.jpg"]]
-
+#Reading in images with OpenCV
 img1 = cv2.imread(allImages[0][0])
 img2 = cv2.imread(allImages[0][1])
 img3 = cv2.imread(allImages[0][2])
 
+#TEMP 1
 temp = stitching(img1, img2)
-firstOutput = stitching(temp, img3)
+
+cv2.imwrite(tempPath, temp)
+temp = removeBorder(tempPath)
+
+
+#TEMP 2
+temp2 = stitching(img2, img3)
+
+cv2.imwrite(temp2Path, temp2)
+temp2 = removeBorder(temp2Path)
+
+
+#FINAL
+firstOutput = stitching(temp, temp2)
 
 cv2.imwrite(outputPath, firstOutput)
-cv2.imshow("Result", firstOutput)
+firstOutput = removeBorder(outputPath)
 
-cv2.waitKey(0)
+cv2.imwrite(outputPath, firstOutput)
 
+#Used for repeating over length of whiteboard
 # for i in range(1, 10):
 
 #     img1 = allImages[i][0]
