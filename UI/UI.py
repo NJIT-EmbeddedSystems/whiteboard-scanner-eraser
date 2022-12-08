@@ -43,7 +43,7 @@ class MainWindow(QWidget):
         # Execute button
         self.button = QPushButton("EXECUTE",self)
         self.button.resize(120, 60)
-        self.button.(155,200)
+        self.button.move(155,200)
         #self.button.clicked.connect(self.execClicked()) 
         # add buttonClicked() def
 
