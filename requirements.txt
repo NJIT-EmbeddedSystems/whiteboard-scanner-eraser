@@ -8,3 +8,7 @@
 # servos
 # driver
 # limit switch
+gpizero
+time
+threading
+os
