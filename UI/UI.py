@@ -1,6 +1,8 @@
 # import PyQt6
 
 import sys
+import buttons
+
 from PyQt6.QtWidgets import (QApplication, QWidget, QLabel,\
                              QCheckBox, QPushButton) 
 # not used: qvboxlayout
@@ -25,19 +27,24 @@ class MainWindow(QWidget):
         header_label = QLabel("Select options:", self)
         header_label.setWordWrap(True)
         header_label.move(15,10)
+
+        # scan checkbox
         scan_label = QLabel("Scan", self)
         scan_label.move(15, 30)
         scan_cb = QCheckBox(self)
         scan_cb.move(60, 30)
+        
+        # erase checkbox
         erase_label = QLabel("Erase", self)
         erase_label.move(15, 50)
         erase_cb = QCheckBox(self)
         erase_cb.move(60, 50)
+
         # Execute button
         self.button = QPushButton("EXECUTE",self)
-        self.button.move(155,200)
-        # link button click to exec()-like function
-        # self.button.clicked.connect(self.buttonClicked) 
+        self.button.resize(120, 60)
+        self.button.(155,200)
+        #self.button.clicked.connect(self.execClicked()) 
         # add buttonClicked() def
 
 
