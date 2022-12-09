@@ -31,21 +31,20 @@ dualButton = #Button(pin#)
 limitLeft = #Button(pin#)
 limitRight = #Button(pin#)
 
+#initializing output devices
+eraserServos = #EraserServos(#Servo(pin #, initial_value = 0), #Servo(pin #,initial_value = 0), #Servo(pin #,initial_value = 0))
+eraserMotor_DC = #Motor(forward= forward pin#, backward = backward pin#)
+cameraMotor_DC = #Motor(forward= forward pin#, backward = backward pin#)
+
+# takes into consideration possiblity of installation on both left and right sides
 intialLimit = limitLeft
 finalLimit = limitRight
-
 # uses an attribute for position: left or right
-
 position = "left" # left by default for now until the attribute is defined
 
 if position == "right":
     intialLimit = limitRight
     finalLimit = limitLeft
-
-#initializing output devices
-eraserServos = #EraserServos(#Servo(pin #, initial_value = 0), #Servo(pin #,initial_value = 0), #Servo(pin #,initial_value = 0))
-eraserMotor_DC = #Motor(forward= forward pin#, backward = backward pin#)
-cameraMotor_DC = #Motor(forward= forward pin#, backward = backward pin#)
  
 # Defining erase functions
 def erase(): 
