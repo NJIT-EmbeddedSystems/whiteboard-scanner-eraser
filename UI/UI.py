@@ -4,7 +4,7 @@ import sys
 import buttons
 
 from PyQt6.QtWidgets import (QApplication, QWidget, QLabel,\
-                             QCheckBox, QPushButton) 
+                             QCheckBox, QPushButton, QLineEdit) 
 # not used: qvboxlayout
 # from PyQt6.QtGui import QPixmap
 from PyQt6.uic.properties import QtWidgets
@@ -39,6 +39,13 @@ class MainWindow(QWidget):
         erase_label.move(15, 50)
         erase_cb = QCheckBox(self)
         erase_cb.move(60, 50)
+
+        # save location entry
+        saveLocation_label = QLabel("Save Location:", self)
+        saveLocation_label.move(15,100)
+        self.saveLocation_edit = QLineEdit(self)
+        self.saveLocation_edit.resize(210,20)
+        self.saveLocation_edit.move(120,100)
 
         # Execute button
         self.button = QPushButton("EXECUTE",self)
