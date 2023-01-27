@@ -8,43 +8,15 @@ allImages = glob.glob(path + "*")
 
 outputPath = "./outputImages/whiteboardOutput.jpg"
 
-# allImages = [["./testImages/whiteboard-test2/20221118_121053.jpg", "./testImages/whiteboard-test2/20221118_121056.jpg", "./testImages/whiteboard-test2/20221118_121058.jpg"]]
-# tempPath = "./outputImages/firstTemp.jpg"
-# temp2Path = "./outputImages/secondTemp.jpg"
-
-
-
 
 # Read images into CV2 image objects
 imgList = list(map(cv2.imread, allImages))
 
-# img1 = cv2.imread(allImages[0][0])
-# img2 = cv2.imread(allImages[0][1])
-# img3 = cv2.imread(allImages[0][2])
-
-
-
-
 
 # Stitch the images vertically
-#TEMP 1
-# temp = stitching(imgList[0], imgList[1])
 
-#temp = removeBorder(tempPath)
-# cv2.imwrite(tempPath, temp)
-
-#TEMP 2
-# temp2 = stitching(imgList[1], imgList[2])
-
-#temp2 = removeBorder(temp2Path)
-# cv2.imwrite(temp2Path, temp2)
-
-#FINAL
 output = stitching(imgList[0], imgList[1], imgList[2])
-
-#firstOutput = removeBorder(firstOutput)
 cv2.imwrite(outputPath, output)
-
 
 
 # Stitch the images horizontally
