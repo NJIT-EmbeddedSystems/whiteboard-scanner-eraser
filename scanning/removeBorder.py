@@ -2,12 +2,13 @@ import numpy as np
 import cv2
 import copy
 
-def removeBorder(imgPath):
+def removeBorder(original):
     # keep a copy of original image
-    original = cv2.imread(imgPath)
+    # original = cv2.imread(imgPath)
 
     # Read the image, convert it into grayscale, and make in binary image for threshold value of 1.
-    img = cv2.imread(imgPath,0)
+    # img = cv2.imread(imgPath, 0)
+    img = cv2.cvtColor(original, cv2.COLOR_BGR2GRAY)
 
     # use binary threshold, all pixel that are beyond 3 are made white
     _, thresh_original = cv2.threshold(img, 3, 255, cv2.THRESH_BINARY)
