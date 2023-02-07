@@ -34,7 +34,6 @@ limitRight = #Button(pin#)
 #initializing output devices
 eraserServos = #EraserServos(#Servo(pin #, initial_value = 0), #Servo(pin #,initial_value = 0), #Servo(pin #,initial_value = 0))
 eraserMotor_DC = #Motor(forward= forward pin#, backward = backward pin#)
-cameraMotor_DC = #Motor(forward= forward pin#, backward = backward pin#)
 
 # takes into consideration possiblity of installation on both left and right sides
 intialLimit = limitLeft
@@ -49,17 +48,18 @@ if position == "right":
 # Defining erase functions
 def erase(): 
   #Places felt on board and begin moving across board
-   eraserServos.max()
-   time.sleep(1)
-   eraserMotor_DC.forward()
-   #should work for both normally closed and normally open limit switches
-   #make motor return to starting position once it reaches the end of the board
-   if finalLimit.is_pressed:
-      eraserMotor_DC.reverse()
-      #pick felt back up when the eraser reaches its starting position
-      if intialLimit.is_pressed:
-        time.sleep(1)
-        intialLimit.pin.drive_high()
-        eraserServos.modifyValue(0)
-        eraserMotor_DC.stop()
-        return
+    eraserServos.max()
+    time.sleep(1)
+    eraserMotor_DC.forward()
+    while(finalLimit == 0):
+        continue
+    #should work for both normally closed and normally open limit switches
+    #make motor return to starting position once it reaches the end of the board
+    eraserMotor_DC.reverse()
+    #pick felt back up when the eraser reaches its starting position
+    while(intialLimit == 0):
+        continue
+    eraserMotor_DC.stop()
+    time.sleep(1)
+    eraserServos.modifyValue(0)
+    return
