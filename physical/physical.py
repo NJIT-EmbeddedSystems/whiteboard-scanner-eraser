@@ -1,6 +1,7 @@
 #importing Button, Servo, and Motor library to control buttons, servo and dc motors, respectively
 from gpiozero import Button,Servo,Motor
 import time
+import piCamera
 
 class EraserServos:
     def __init__(self, *args: Servo):
@@ -35,6 +36,9 @@ limitRight = #Button(pin#)
 eraserServos = #EraserServos(#Servo(pin #, initial_value = 0), #Servo(pin #,initial_value = 0), #Servo(pin #,initial_value = 0))
 eraserMotor_DC = #Motor(forward= forward pin#, backward = backward pin#)
 
+#initializing Camera
+camera = PiCamera()
+
 # takes into consideration possiblity of installation on both left and right sides
 intialLimit = limitLeft
 finalLimit = limitRight
@@ -62,4 +66,24 @@ def erase():
     eraserMotor_DC.stop()
     time.sleep(1)
     eraserServos.modifyValue(0)
+    return
+
+def scan():
+    timeBetweenPics = 1 #adjustable picture taking delay based on time
+    runtime = time.time()
+    camera.capture() #take initial image
+    while finalLimit == 0: #or 1 if it's a normally closed limit switch
+        eraserMotor_DC.forward()
+        if runtime == timeBetweenPics:
+            eraserMotor_DC.stop()
+            time.sleep(1)
+            camera.capture()
+            time.sleep(1)
+            runtime = time.time() #restart timer
+    #when finalLimit is reached, return to starting position
+    eraserMotor_DC.reverse()
+    while(intialLimit == 0): #or 1 if it's a normally closed limit switch
+        continue
+    eraserMotor_DC.stop()
+    time.sleep(1)
     return
