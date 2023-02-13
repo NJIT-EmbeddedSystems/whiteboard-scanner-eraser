@@ -8,7 +8,7 @@ class Stitcher:
         self.isv3 = imutils.is_cv3(or_better=True)
 
 
-    def stitch(self, images, ratio=0.75, reprojThresh=50.0, showMatches=False):
+    def stitch(self, images, ratio=0.50, reprojThresh=50.0, showMatches=False):
         (imageB, imageA) = images
         (kpsA, featuresA) = self.detectAndDescribe(imageA)
         (kpsB, featuresB) = self.detectAndDescribe(imageB)

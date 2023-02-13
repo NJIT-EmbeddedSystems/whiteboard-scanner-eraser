@@ -6,7 +6,7 @@ import glob
 path = "./testImages/whiteboard-test2/"
 allImages = glob.glob(path + "*")
 
-outputPath = "./outputImages/whiteboardOutput.jpg"
+outputPath = "./outputImages/testOutput.jpg"
 
 
 # Read images into CV2 image objects
@@ -18,6 +18,15 @@ imgList = list(map(cv2.imread, allImages))
 output = stitching(imgList[0], imgList[1], imgList[2])
 cv2.imwrite(outputPath, output)
 
+
+result = cv2.addWeighted(output, 0, output, 1.1, 1.1)
+cv2.imwrite(outputPath, result)
+
+
+# def brightness( im_file ):
+#    im = Image.open(im_file).convert('L')
+#    stat = ImageStat.Stat(im)
+#    return stat.mean[0]
 
 # Stitch the images horizontally
 
