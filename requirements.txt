@@ -1,7 +1,7 @@
 #  todo input rpi package
 # gpio reads
 # motors packages if needed
-# 
+#  camera interfaces
 # opencv when needed
 # motors
 # servos
@@ -16,3 +16,5 @@ cv2
 imutils
 numpy
 Stitcher
+# User Interface
+PyQt6
