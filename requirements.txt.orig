@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 #  todo input rpi package
 # gpio reads
 # motors packages if needed
@@ -12,3 +14,4 @@ gpizero
 time
 threading
 os
+>>>>>>> origin/3-physical-movement
