@@ -2,7 +2,6 @@
 # gpio reads
 # motors packages if needed
 # 
-#  camera interfaces
 # opencv when needed
 # motors
 # servos
@@ -12,3 +11,8 @@ gpizero
 time
 threading
 os
+#  camera interfaces
+cv2
+imutils
+numpy
+Stitcher
