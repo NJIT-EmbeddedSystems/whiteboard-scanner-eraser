@@ -1,20 +1,11 @@
-#  todo input rpi package
-# gpio reads
-# motors packages if needed
-#  camera interfaces
-# opencv when needed
-# motors
-# servos
-# driver
-# limit switch
-gpizero
-time
-threading
-os
-#  camera interfaces
-cv2
+## Physical
+gpiozero
+
+## camera interfaces
+#opencv-python - imports cv2(?)
 imutils
 numpy
 Stitcher
-# User Interface
+
+## User Interface
 PyQt6
