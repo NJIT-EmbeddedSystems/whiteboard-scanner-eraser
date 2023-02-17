@@ -2,6 +2,7 @@
 from gpiozero import Button,Servo,Motor
 import time
 import piCamera
+import datetime
 
 class EraserServos:
     def __init__(self, *args: Servo):
@@ -71,13 +72,17 @@ def erase():
 def scan():
     timeBetweenPics = 1 #adjustable picture taking delay based on time
     runtime = time.time()
-    camera.capture() #take initial image
+    now = datetime.now()
+    current_time = now.strftime("%H:%M:%S")
+    camera.capture('img{}.jpg'.format(current_time)) #take initial image
     while finalLimit == 0: #or 1 if it's a normally closed limit switch
         eraserMotor_DC.forward()
         if runtime == timeBetweenPics:
             eraserMotor_DC.stop()
             time.sleep(1)
-            camera.capture()
+            now = datetime.now()
+            current_time = now.strftime("%H:%M:%S")
+            camera.capture('img{}.jpg'.format(current_time)) 
             time.sleep(1)
             runtime = time.time() #restart timer
     #when finalLimit is reached, return to starting position
