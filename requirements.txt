@@ -2,7 +2,7 @@
 gpiozero
 
 ## camera interfaces
-#opencv-python - imports cv2(?)
+opencv-python 
 imutils
 numpy
 Stitcher
