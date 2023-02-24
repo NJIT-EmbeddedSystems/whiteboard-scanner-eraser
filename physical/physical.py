@@ -25,17 +25,17 @@ class EraserServos:
 
 
 #initializing input buttons and limit switches (also classified as buttons)
-scanButton = #Button(pin#)
-eraseButton = #Button(pin#)
-dualButton = #Button(pin#)
+scanButton = Button(11)
+eraseButton = #Button(13)
+dualButton = #Button(15)
 
 #Have to see if the limit swithces are normally open or normally closed
-limitLeft = #Button(pin#)
-limitRight = #Button(pin#)
+limitLeft = #Button(29)
+limitRight = #Button(31)
 
 #initializing output devices
-eraserServos = #EraserServos(#Servo(pin #, initial_value = 0), #Servo(pin #,initial_value = 0), #Servo(pin #,initial_value = 0))
-eraserMotor_DC = #Motor(forward= forward pin#, backward = backward pin#)
+eraserServos = #EraserServos(#Servo(33, initial_value = 0), #Servo(35,initial_value = 0), #Servo(26,initial_value = 0))
+eraserMotor_DC = #Motor(forward = 16, backward = 18)
 
 #initializing Camera
 camera = PiCamera()
