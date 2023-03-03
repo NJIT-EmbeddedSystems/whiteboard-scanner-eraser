@@ -92,3 +92,8 @@ def scan():
     eraserMotor_DC.stop()
     time.sleep(1)
     return
+
+if scanButton.is_pressed():
+    scan()
+elif eraseButton.is_pressed():
+    erase()
