@@ -1,10 +1,14 @@
-from stitch import stitching
+from stitch import stitching3, stitching2
+from removeBorder import removeBorder
 import cv2
+import imutils
 import glob
+import numpy as np
 
 # Getting raw photos (in jpg)
 path = "./testImages/whiteboard-test2/"
 allImages = glob.glob(path + "*")
+imagePaths = []
 
 outputPath = "./outputImages/testOutput.jpg"
 
@@ -13,23 +17,24 @@ outputPath = "./outputImages/testOutput.jpg"
 imgList = list(map(cv2.imread, allImages))
 
 
+# Remove Fisheye Distortion
+
+
+
 # Stitch the images vertically
-
-output = stitching(imgList[0], imgList[1], imgList[2])
-cv2.imwrite(outputPath, output)
+output = stitching3(imgList[0], imgList[1], imgList[2])
 
 
-result = cv2.addWeighted(output, 0, output, 1.1, 1.1)
+result = cv2.addWeighted(output, 0.9, output, 1.1, 0)
 cv2.imwrite(outputPath, result)
 
 
-# def brightness( im_file ):
-#    im = Image.open(im_file).convert('L')
-#    stat = ImageStat.Stat(im)
-#    return stat.mean[0]
+#Rotate vertically stitched image 
+rotated = cv2.rotate(result, cv2.ROTATE_90_CLOCKWISE)
+cv2.imwrite(outputPath, rotated)
+
 
 # Stitch the images horizontally
-
 
 
 
