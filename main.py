@@ -12,4 +12,18 @@ class whiteboardEraser(StateMachine):
     process_img = State()
     move_back   = State(final=True)
 
+    def __init__(self):
+        # conditions for state changes
+        self.execute = False
+        self.scanFlag = False
+        self.scanEnable = False
+        self.eraseFlag = False
+        self.eraseEnable = False
+        self.limitSwitchE = False
+        self.limitSwitchF = False
+        # creates controller for fsm
+        super(fsmControl, self).__init__()
+
+
+
 exit()
