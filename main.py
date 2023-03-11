@@ -1,4 +1,4 @@
-from python-statemachine import StateMachine, State
+from statemachine import StateMachine, State
 import physical.physical
 # import scanning.scanning
 # import UI.UI
