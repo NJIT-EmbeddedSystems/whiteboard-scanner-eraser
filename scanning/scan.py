@@ -26,19 +26,19 @@ imgList = list(map(cv2.imread, allImages))
 output = stitching2(imgList[0], imgList[1]) # FIXME : stitch two images vertically
 
 
-result = cv2.addWeighted(output, 0.9, output, 1.1, 0)
+result = cv2.addWeighted(output, 0.9, output, 1.1, 0) # play with weight numbers, affected by lighting?
 cv2.imwrite(outputPath, result)
 
-
-#Rotate vertically stitched image 
-rotated = cv2.rotate(result, cv2.ROTATE_90_CLOCKWISE)
-cv2.imwrite(outputPath, rotated)
+# might not need to do this
+## #Rotate vertically stitched image 
+## rotated = cv2.rotate(result, cv2.ROTATE_90_CLOCKWISE)
+## cv2.imwrite(outputPath, rotated)
 
 
 # Stitch the images horizontally
-
-
-
+## take each output vertical stitch in array
+## take first, append next image
+## keep appending until reach end of board
 
 #Used for repeating over length of whiteboard
 # for i in range(1, 10):
