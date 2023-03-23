@@ -1,4 +1,4 @@
-from stitch import stitching3, stitching2
+from stitch import stitching2
 from removeBorder import removeBorder
 import cv2
 import imutils
@@ -6,7 +6,8 @@ import glob
 import numpy as np
 
 # Getting raw photos (in jpg)
-path = "./testImages/whiteboard-test2/"
+# placeholder for internal testing
+path = "./testImages/whiteboard-test2/" #FIXME : add real path of raw images
 allImages = glob.glob(path + "*")
 imagePaths = []
 
@@ -22,7 +23,7 @@ imgList = list(map(cv2.imread, allImages))
 
 
 # Stitch the images vertically
-output = stitching3(imgList[0], imgList[1], imgList[2])
+output = stitching2(imgList[0], imgList[1]) # FIXME : stitch two images vertically
 
 
 result = cv2.addWeighted(output, 0.9, output, 1.1, 0)
