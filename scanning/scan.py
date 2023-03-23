@@ -1,3 +1,6 @@
+## top-level scan file. main driving pipeline here.
+## 
+
 from stitch import stitching2
 from removeBorder import removeBorder
 import cv2
