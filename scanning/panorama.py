@@ -1,3 +1,6 @@
+## Uses decriptors to correctly orient two images together.
+##
+
 import numpy as np
 import cv2
 import imutils

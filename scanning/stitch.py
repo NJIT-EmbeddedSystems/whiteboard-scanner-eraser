@@ -1,3 +1,6 @@
+## Contains the function to stitch either two or three images together.
+##
+
 from panorama import Stitcher
 from removeBorder import removeBorder
 

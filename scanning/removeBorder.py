@@ -1,3 +1,6 @@
+## Contains a function to remove borders from an image.
+##
+
 import numpy as np
 import cv2
 import copy
