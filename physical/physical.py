@@ -2,8 +2,17 @@
 from threading import active_count
 from gpiozero import Button,Servo,Motor,OutputDevice
 import time
-import piCamera
+from picamera import PiCamera # FIXME : need to use picamera 2
 import datetime
+
+# constants
+SCANBUTTON   = 17
+ERASEBUTTON  = 27
+DUALBUTTON   = 22
+LIMITLEFT    = 5
+LIMITRIGHT   = 6
+ERASERSERVOS = [13,19,26]
+ERASERMOTORS = [23,24]
 
 class EraserServos:
     def __init__(self, *args: Servo):
@@ -26,19 +35,20 @@ class EraserServos:
 
 
 #initializing input buttons and limit switches (also classified as buttons)
-scanButton = Button(11)
-eraseButton = Button(13)
-dualButton = Button(15)
+scanButton = Button(SCANBUTTON)
+eraseButton = Button(ERASEBUTTON)
+dualButton = Button(DUALBUTTON)
 
 #Have to see if the limit swithces are normally open or normally closed
-limitLeft = Button(29)
-limitRight = Button(31)
+limitLeft = Button(LIMITLEFT)
+limitRight = Button(LIMITRIGHT)
 
 #initializing output devices
-eraserServos = EraserServos(Servo(33, initial_value = 0), Servo(35,initial_value = 0), Servo(26,initial_value = 0))
+## FIXME : need to drive all servos from one pin
+eraserServos = EraserServos(Servo(ERASERSERVOS[0], initial_value = 0), Servo(ERASERSERVOS[1],initial_value = 0), Servo(ERASERSERVOS[2],initial_value = 0))
 
-motorRelay1 = OutputDevice(16, active_high = False, initial_value = False)
-motorRelay2 = OutputDevice(18, active_high = False, initial_value = False)
+motorRelay1 = OutputDevice(ERASERMOTORS[0], active_high = False, initial_value = False)
+motorRelay2 = OutputDevice(ERASERMOTORS[1], active_high = False, initial_value = False)
 
 def relayForward():
     motorRelay1.on()
