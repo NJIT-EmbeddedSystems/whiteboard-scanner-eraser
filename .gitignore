@@ -6,3 +6,4 @@ __pycache__/
 /outputImages/
 *venv
 .venv
+.DS_Store
