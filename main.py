@@ -10,12 +10,17 @@ class whiteboardEraser(StateMachine):
     move_fwd    = State()
     idle2       = State()
     process_img = State()
+    cams_off    = State()
+    motors_off  = State()
     move_back   = State()
 
     # state transitions
-    execute =  start.to(idle)
+    execute = start.to(idle)
     idle.to(move_fwd)
     move_fwd.to(idle2)
+    
+    idle2.to(process_img)
+    process_img.to(idle2)
     idle2.to(move_back)
     move_back.to(start)
 
