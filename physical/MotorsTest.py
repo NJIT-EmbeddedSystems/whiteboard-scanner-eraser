@@ -29,7 +29,6 @@ class EraserServos:
             s.value = val
 
 eraseButton = Button(ERASEBUTTON)
-dualButton = Button(DUALBUTTON)
 
 #Have to see if the limit swithces are normally open or normally closed
 limitLeft = Button(LIMITLEFT)
@@ -37,22 +36,34 @@ limitRight = Button(LIMITRIGHT)
 
 #initializing output devices
 ## FIXME : need to drive all servos from one pin
-eraserServos = EraserServos(Servo(ERASERSERVOS[0], initial_value = 0), Servo(ERASERSERVOS[1],initial_value = 0), Servo(ERASERSERVOS[2],initial_value = 0))
+ motorRelay1 = OutputDevice(ERASERMOTORS[0], active_high = False, initial_value = False)
 
-motorRelay1 = OutputDevice(ERASERMOTORS[0], active_high = False, initial_value = False)
+
 motorRelay2 = OutputDevice(ERASERMOTORS[1], active_high = False, initial_value = False)
-
+   
 def relayForward():
+    print("before relay1: ", motorRelay1.value)
+    print("before relay2: ", motorRelay2.value)
     motorRelay1.on()
     motorRelay2.off()
+    print("relay1: ", motorRelay1.value)
+    print("relay2: ", motorRelay2.value)
 
 def relayBackward():
+    print("before relay1: ", motorRelay1.value)
+    print("before relay2: ", motorRelay2.value)
     motorRelay1.off()
     motorRelay2.on()
+    print("relay1: ", motorRelay1.value)
+    print("relay2: ", motorRelay2.value)
 
 def relayStop():
+    print("before relay1: ", motorRelay1.value)
+    print("before relay2: ", motorRelay2.value)
     motorRelay1.off()
     motorRelay2.off()
+    print("relay1: ", motorRelay1.value)
+    print("relay2: ", motorRelay2.value)
 
 # takes into consideration possiblity of installation on both left and right sides
 intialLimit = limitLeft
@@ -67,7 +78,7 @@ if position == "right":
 # Defining erase functions
 def erase(): 
   #Places felt on board and begin moving across board
-    eraserServos.max()
+#    eraserServos.max()
     time.sleep(1)
     relayForward()
     while(finalLimit == 0):
@@ -82,8 +93,7 @@ def erase():
         continue
     relaystop()
     time.sleep(1)
-    eraserServos.modifyValue(0)
+#    eraserServos.modifyValue(0)
     return
 
-elif eraseButton.is_pressed():
-    erase()
+ erase()
