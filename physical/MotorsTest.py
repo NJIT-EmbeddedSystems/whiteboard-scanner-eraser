@@ -36,24 +36,23 @@ limitRight = Button(LIMITRIGHT)
 
 #initializing output devices
 ## FIXME : need to drive all servos from one pin
- motorRelay1 = OutputDevice(ERASERMOTORS[0], active_high = False, initial_value = False)
 
-
-motorRelay2 = OutputDevice(ERASERMOTORS[1], active_high = False, initial_value = False)
+motorRelay1 = OutputDevice(ERASERMOTORS[0], active_high = False, initial_value = False)
+motorRelay2 = OutputDevice(ERASERMOTORS[1], active_high = True, initial_value = True)
    
 def relayForward():
     print("before relay1: ", motorRelay1.value)
     print("before relay2: ", motorRelay2.value)
-    motorRelay1.on()
-    motorRelay2.off()
+    motorRelay1.toggle()
+    motorRelay2.toggle()
     print("relay1: ", motorRelay1.value)
     print("relay2: ", motorRelay2.value)
 
 def relayBackward():
     print("before relay1: ", motorRelay1.value)
     print("before relay2: ", motorRelay2.value)
-    motorRelay1.off()
-    motorRelay2.on()
+    motorRelay1.toggle()
+    motorRelay2.toggle()
     print("relay1: ", motorRelay1.value)
     print("relay2: ", motorRelay2.value)
 
@@ -61,7 +60,7 @@ def relayStop():
     print("before relay1: ", motorRelay1.value)
     print("before relay2: ", motorRelay2.value)
     motorRelay1.off()
-    motorRelay2.off()
+    motorRelay2.on()
     print("relay1: ", motorRelay1.value)
     print("relay2: ", motorRelay2.value)
 
@@ -91,9 +90,9 @@ def erase():
     #pick felt back up when the eraser reaches its starting position
     while(intialLimit == 0):
         continue
-    relaystop()
+    relayStop()
     time.sleep(1)
 #    eraserServos.modifyValue(0)
     return
 
- erase()
+erase()
