@@ -1,8 +1,14 @@
+#include <Servo.h>  //include servo library 
+
+Servo myservo;  //create servo object
+
+#define  servoPin        10 // PIN D9 , PWM PIN
 #define  RELAY1 	 2  // PIN D2
 #define  RELAY2 	 4  // PIN D4
 #define  LIMIT_SWITCH1   5  // PIN D5
 #define  LIMIT_SWITCH2   19 // PIN D19
 bool endBoard = false; // set endBoard to false intially 
+
 
 enum States {
 	IDLE,
@@ -56,6 +62,8 @@ void setup() {
 	pinMode(RELAY2, OUTPUT);// set pin as output for relay 2
 	pinMode(LIMIT_SWITCH1, INPUT); // set pin as input for limit switch 1
 	pinMode(LIMIT_SWITCH2, INPUT); // set pin as input for limit switch 2
+	
+	myservo.attach(servoPin); //assign myservo object to a servoPin pin
 
 	// keep the motor off by keeping both HIGH
 	digitalWrite(RELAY1, HIGH); 
@@ -103,3 +111,14 @@ void stop() {
 	digitalWrite(RELAY1, HIGH);// turn relay 1 OFF
 	digitalWrite(RELAY2, HIGH);// turn relay 2 OFF    
 }
+
+void ErasersDown(){
+  myservo.write(0);
+  delay(15);
+}
+
+void ErasersUp(){
+  myservo.write(180);
+  delay(15);
+}
+
