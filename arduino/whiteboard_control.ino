@@ -2,13 +2,14 @@
 
 Servo myservo;  //create servo object
 
-#define  servoPin        10 // PIN D9 , PWM PIN
+#define  EXECUTE_BUTTON  1  // PIN D1
+#define  SERVOPIN        10 // PIN D9 , PWM PIN
 #define  RELAY1 	 2  // PIN D2
 #define  RELAY2 	 4  // PIN D4
 #define  LIMIT_SWITCH1   5  // PIN D5
-#define  LIMIT_SWITCH2   19 // PIN D19
-bool endBoard = false; // set endBoard to false intially 
+#define  LIMIT_SWITCH2   9  // PIN D9
 
+bool endBoard = false; // set endBoard to false intially 
 
 enum States {
 	IDLE,
@@ -23,36 +24,66 @@ enum Input {
 };
 
 uint8_t state = IDLE;
-/*
-void controller(uint8_t Input){
+
+void statemachine(){
 	switch(state) {
 		case IDLE:
-		if () {
-		}
-		break;
+
+			stop();
+
+			if(digitalRead(EXECUTE_BUTTON) == LOW){
+				Serial.print(F("state: IDLE->MOVE_FWD\n"));
+				state = MOVE_FWD;
+			}
+			break;
 
 		case MOVE_FWD:
-		if () {
-		}
-		break;
+
+			erasersDown();
+			delay(100);
+			ccw();	
+
+			if(digitalRead(LIMIT_SWITCH1) == LOW){
+				Serial.print(F("state: MOVE_FWD->IDLE2\n"));
+				state = IDLE2;
+			}
+			else 
+				state = MOVE_FWD;
+			break;
 
 		case IDLE2:
-		if () {
-		}
-		break;
+
+			stop();
+
+			if(digitalRead(EXECUTE_BUTTON) == LOW){
+				Serial.print(F("state: IDLE->MOVE_BCK\n"));
+				state = MOVE_BCK;
+			}
+			else 
+				state = IDLE2;
+			break;
 
 		case MOVE_BCK:
-		if () {
-		}
-		break;
+
+			cw();
+
+			if(digitalRead(LIMIT_SWITCH2) == LOW){
+				delay(100);
+				erasersUp();
+				delay(100);
+				Serial.print(F("state: MOVE_BCK->IDLE\n"));
+				state = IDLE;
+			}
+			else 
+				state = MOVE_BCK;
+			break;
 
 		case default:
-		if () {
-		}
-		break;
+			state = IDLE;
+			break;
 
+	};
 };
-*/
 
 void setup() {
 	Serial.begin(115200);
@@ -62,37 +93,40 @@ void setup() {
 	pinMode(RELAY2, OUTPUT);// set pin as output for relay 2
 	pinMode(LIMIT_SWITCH1, INPUT); // set pin as input for limit switch 1
 	pinMode(LIMIT_SWITCH2, INPUT); // set pin as input for limit switch 2
-	
-	myservo.attach(servoPin); //assign myservo object to a servoPin pin
+
+	myservo.attach(SERVOPIN); //assign myservo object to a servoPin pin
 
 	// keep the motor off by keeping both HIGH
 	digitalWrite(RELAY1, HIGH); 
 	digitalWrite(RELAY2, HIGH); 
+
 }
 
 void loop() {
 
+	statemachine();
+	delay(10);
 	// Intially rotate in CCW direction
-	ccw();
+	//	ccw();
 
-	if (digitalRead(LIMIT_SWITCH1) == LOW)
-	{
-		// stop the motor
-		stop();
-		delay(100);
-		// Switch to CW direction
-		cw();
+	//	if (digitalRead(LIMIT_SWITCH1) == LOW)
+	//	{
+	//		// stop the motor
+	//		stop();
+	//		delay(100);
+	//		// Switch to CW direction
+	//		cw();
+	//
+	//		endBoard = true;
+	//	}
+	//
+	//	if (digitalRead(LIMIT_SWITCH2) == LOW && endBoard)
+	//	{
+	//		// stop the motor
+	//		stop();
+	//	}
 
-		endBoard = true;
-	}
-
-	if (digitalRead(LIMIT_SWITCH2) == LOW && endBoard)
-	{
-		// stop the motor
-		stop();
-	}
-
-}// loop end
+}
 
 void ccw() {
 	Serial.print(F("move counter-clockwise\n"));
@@ -112,13 +146,15 @@ void stop() {
 	digitalWrite(RELAY2, HIGH);// turn relay 2 OFF    
 }
 
-void ErasersDown(){
-  myservo.write(0);
-  delay(15);
+void erasersDown(){
+	Serial.print(F("erasers down\n"));
+	myservo.write(0);
+	delay(15);
 }
 
-void ErasersUp(){
-  myservo.write(180);
-  delay(15);
+void erasersUp(){
+	Serial.print(F("erasers up\n"));
+	myservo.write(180);
+	delay(15);
 }
 
