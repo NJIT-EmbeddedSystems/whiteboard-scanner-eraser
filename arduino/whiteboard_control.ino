@@ -2,10 +2,10 @@
 
 Servo myservo;  //create servo object
 
-#define  EXECUTE_BUTTON  1  // PIN D1
 #define  SERVOPIN        10 // PIN D9 , PWM PIN
 #define  RELAY1 	 2  // PIN D2
 #define  RELAY2 	 4  // PIN D4
+#define  EXECUTE_BUTTON  7  // PIN D1
 #define  LIMIT_SWITCH1   5  // PIN D5
 #define  LIMIT_SWITCH2   9  // PIN D9
 
@@ -28,51 +28,43 @@ uint8_t state = IDLE;
 void statemachine(){
 	switch(state) {
 		case IDLE:
-
-			stop();
-
 			if(digitalRead(EXECUTE_BUTTON) == LOW){
 				Serial.print(F("state: IDLE->MOVE_FWD\n"));
 				state = MOVE_FWD;
+				erasersDown();
+				delay(1000);
+				ccw();	
 			}
 			break;
 
 		case MOVE_FWD:
-
-			erasersDown();
-			delay(100);
-			ccw();	
-
 			if(digitalRead(LIMIT_SWITCH1) == LOW){
 				Serial.print(F("state: MOVE_FWD->IDLE2\n"));
 				state = IDLE2;
+				stop();
 			}
 			else 
 				state = MOVE_FWD;
 			break;
 
 		case IDLE2:
-
-			stop();
-
 			if(digitalRead(EXECUTE_BUTTON) == LOW){
 				Serial.print(F("state: IDLE->MOVE_BCK\n"));
 				state = MOVE_BCK;
+				cw();
 			}
 			else 
 				state = IDLE2;
 			break;
 
 		case MOVE_BCK:
-
-			cw();
-
 			if(digitalRead(LIMIT_SWITCH2) == LOW){
-				delay(100);
+				delay(1000);
 				erasersUp();
-				delay(100);
+				delay(1000);
 				Serial.print(F("state: MOVE_BCK->IDLE\n"));
 				state = IDLE;
+				stop();
 			}
 			else 
 				state = MOVE_BCK;
@@ -154,7 +146,7 @@ void erasersDown(){
 
 void erasersUp(){
 	Serial.print(F("erasers up\n"));
-	myservo.write(180);
+	myservo.write(180); //play with this number
 	delay(15);
 }
 
