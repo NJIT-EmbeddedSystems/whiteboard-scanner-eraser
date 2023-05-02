@@ -2,7 +2,7 @@
 
 Servo myservo;  //create servo object
 
-#define  SERVOPIN        10 // PIN D9 , PWM PIN
+#define  SERVOPIN        6 // PIN D9 , PWM PIN, NEEDS FURTHER TESTING
 #define  RELAY1 	 2  // PIN D2
 #define  RELAY2 	 4  // PIN D4
 #define  EXECUTE_BUTTON  7  // PIN D1
@@ -28,7 +28,7 @@ uint8_t state = IDLE;
 void statemachine(){
 	switch(state) {
 		case IDLE:
-			if(digitalRead(EXECUTE_BUTTON) == LOW){
+			if(digitalRead(EXECUTE_BUTTON) == HIGH){
 				Serial.print(F("state: IDLE->MOVE_FWD\n"));
 				state = MOVE_FWD;
 				erasersDown();
@@ -38,7 +38,7 @@ void statemachine(){
 			break;
 
 		case MOVE_FWD:
-			if(digitalRead(LIMIT_SWITCH1) == LOW){
+			if(digitalRead(LIMIT_SWITCH1) == HIGH){
 				Serial.print(F("state: MOVE_FWD->IDLE2\n"));
 				state = IDLE2;
 				stop();
@@ -48,7 +48,7 @@ void statemachine(){
 			break;
 
 		case IDLE2:
-			if(digitalRead(EXECUTE_BUTTON) == LOW){
+			if(digitalRead(EXECUTE_BUTTON) == HIGH){
 				Serial.print(F("state: IDLE->MOVE_BCK\n"));
 				state = MOVE_BCK;
 				cw();
@@ -58,7 +58,7 @@ void statemachine(){
 			break;
 
 		case MOVE_BCK:
-			if(digitalRead(LIMIT_SWITCH2) == LOW){
+			if(digitalRead(LIMIT_SWITCH2) == HIGH){
 				delay(1000);
 				erasersUp();
 				delay(1000);
@@ -70,7 +70,7 @@ void statemachine(){
 				state = MOVE_BCK;
 			break;
 
-		case default:
+		default:
 			state = IDLE;
 			break;
 
